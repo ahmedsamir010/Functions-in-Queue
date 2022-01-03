@@ -33,8 +33,7 @@ void queue::enqueue(int value)
 		exit(-1);
 	}
 	if (floor == -1 and rear == -1) {
-		floor++;
-		arr[++rear] = value;
+		floor=0,rear=0;
 	}
 	else {
 		arr[++rear] = value;
@@ -46,13 +45,16 @@ int queue::dequeue()
 		cout << "Queue is Empty" << endl;
 		exit(-1);
 	}
+	else if (floor == 0 and rear == -1) {
+		floor = -1, rear = -1;exit(-1);
+	}
 	return arr[floor++];
 }
 // This Expression and is equal  && 
 bool queue::isEmpty()
 {
-	if (floor == -1 && rear == -1 and floor <=rear)return true;
-		return false;
+	if (floor == -1 && rear == -1 and floor <= rear)return true;
+	return false;
 }
 bool queue::isFull()
 {
