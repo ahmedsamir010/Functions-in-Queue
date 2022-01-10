@@ -32,22 +32,27 @@ void queue::enqueue(int value)
 		cout << "Queue is Full" << endl;
 		exit(-1);
 	}
-	if (floor == -1 and rear == -1) {
-		floor=0,rear=0;
-	}
 	else {
-		arr[++rear] = value;
+		if(floor == -1)
+			floor = 0;
+	arr[++rear] = value;
 	}
 }
 int queue::dequeue()
 {
+	int temp;
 	if (isEmpty()) {
 		cout << "Queue is Empty" << endl;
 		exit(-1);
 	}
-	else if (floor == 0 and rear == -1) {
-		floor = -1, rear = -1;exit(-1);
+	else if (floor ==  rear) {
+		temp = arr[floor];
+		floor = -1, rear = -1;
 	}
+	else {
+		temp = arr[floor++];
+	}
+	return temp;
 	return arr[floor++];
 }
 // This Expression and is equal  && 
